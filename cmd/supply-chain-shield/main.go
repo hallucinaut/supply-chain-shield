@@ -169,7 +169,7 @@ func NewSupplyChainShield(failOnHigh, failOnCritical, verbose, dryRun bool) *Sup
 
 // DiscoverArtifacts discovers artifacts in the specified paths
 func (scshield *SupplyChainShield) DiscoverArtifacts(paths []string) error {
-	noticeColor.Println("\n🔍 Discovering artifacts...\n")
+	noticeColor.Println("🔍 Discovering artifacts...")
 
 	for _, path := range paths {
 		infoColor.Printf("Scanning: %s\n", path)
@@ -539,7 +539,7 @@ func (scshield *SupplyChainShield) generateRecommendations(artifact Artifact, ve
 
 // PrintReport prints the supply chain security report
 func (scshield *SupplyChainShield) PrintReport() {
-	infoColor.Println("\n" + strings.Repeat("=", 80))
+	infoColor.Println("" + strings.Repeat("=", 80))
 	infoColor.Println("📊 SUPPLY CHAIN SECURITY REPORT")
 	infoColor.Println(strings.Repeat("=", 80))
 
@@ -584,7 +584,7 @@ func (scshield *SupplyChainShield) PrintReport() {
 	warnColor.Printf("⚠️  Artifacts expired:          %d\n", statusCounts[StatusExpired])
 	errorColor.Printf("❌ Artifacts compromised:      %d\n", statusCounts[StatusCompromised])
 
-	infoColor.Println("\n🔍 Vulnerabilities Found:")
+	infoColor.Println("🔍 Vulnerabilities Found:")
 	infoColor.Printf("  Total vulnerabilities: %d\n", totalVulnerabilities)
 	if totalCriticalVulns > 0 {
 		criticalColor.Printf("  🔴 Critical: %d\n", totalCriticalVulns)
@@ -601,7 +601,7 @@ func (scshield *SupplyChainShield) PrintReport() {
 
 	// Print detailed results
 	if len(scshield.results) > 0 {
-		infoColor.Println("\n📋 Detailed Results:\n")
+		infoColor.Println("📋 Detailed Results:")
 
 		sort.Slice(scshield.results, func(i, j int) bool {
 			return scshield.results[i].ArtifactName < scshield.results[j].ArtifactName
@@ -679,19 +679,19 @@ func (scshield *SupplyChainShield) PrintReport() {
 	hasCriticalIssues := totalCriticalVulns > 0 || statusCounts[StatusFailed] > 0
 
 	if scshield.failOnCritical && hasCriticalIssues {
-		errorColor.Printf("\n❌ Supply chain security FAILED: Critical issues found\n")
+		errorColor.Printf("\n❌ Supply chain security FAILED: Critical issues found")
 		os.Exit(1)
 	}
 
 	if scshield.failOnHigh && (hasFailures || totalHighVulns > 0) {
-		errorColor.Printf("\n❌ Supply chain security FAILED: High severity issues found\n")
+		errorColor.Printf("\n❌ Supply chain security FAILED: High severity issues found")
 		os.Exit(1)
 	}
 
 	if scshield.dryRun {
-		warnColor.Println("\n⚠️  This was a DRY RUN. No artifacts were verified.\n")
+		warnColor.Println("⚠️  This was a DRY RUN. No artifacts were verified.")
 	} else {
-		successColor.Println("\n✅ Supply chain security check complete!\n")
+		successColor.Println("✅ Supply chain security check complete!")
 	}
 }
 
