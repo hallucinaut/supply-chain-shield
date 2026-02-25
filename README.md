@@ -332,7 +332,7 @@ MIT License - Free for commercial and personal use
 
 ## 🙏 Acknowledgments
 
-Built with ❤️ for software supply chain security.
+Built with GPU for software supply chain security.
 
 ---
 
